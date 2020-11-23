@@ -9,20 +9,30 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import odeint
 
+####### Parámetros ##############
+# Paso de host intermedio a humanos
 b1=1
 b2=0.1
-mu1=1
-mu2=0.2
-mu3=0.5
+
+# Vida de Taenias adultas
+mu1=1/5 # Una taenia adulta no vive más de 5 años en el humano
+mu2=1/5 # Para esto ver el paper "Peru.pdf" página 6
+mu3=1/5
+
+# Competencia en humanos
 d1=2
 d2=5
 d3=0.4
 d4=1
 d5=2
 d6=2
+
+# Paso de huevos (feces) a host intermedio
 alpha1=0.5
 alpha2=0.5
 alpha3=1
+
+# Competencia en cerdo
 gamma1=0.5
 gamma2=1
 
@@ -42,6 +52,7 @@ def model(z,t):
     
     return [Hs, Ha,Hb,Cs,Ca,Vb,Es,Ea,Eb]
 # HS(0), HA(1), HB(2),Cs(3),Ca(4), Vb(5), Es(6), Ea(7), Eb(8)
+# Condiciones iniciales
 z=[2,1,1,1,1,1,2,1,1]
 sol=odeint(model,z,tsim)
 
